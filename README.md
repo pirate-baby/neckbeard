@@ -46,13 +46,13 @@ This project is licensed under the MIT License.
 - max nesting depth
 - average nesting depth
 - average length per file
-- size of the code base
-- :white_checkmark: size of the total package including all dependencies
+- ✅ size of the code base
+- ✅ size of the total package including all dependencies
 
 ### Dependency Management
 - dependency pinning/locking
-- total number of required dependencies
-- total number of dependencies in the entire dependency chain
+- ✅ total number of required dependencies
+- ✅ total number of dependencies in the entire dependency chain
 
 ### Production-ready
 - code coverage and code quality

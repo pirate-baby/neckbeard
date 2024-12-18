@@ -1,3 +1,5 @@
+# The classic, reliable web framework
+
 Flask has long been the darling of Python web developers seeking a lightweight, flexible framework, and for good reason. It elegantly wraps Werkzeug and Jinja, providing a strong foundation while allowing developers the freedom to choose additional components as needed. With a compact codebase of just 34.2 MB and a modest dependency chain, Flask is excellent for both hobby projects and scalable applications. The code complexity is kept in check with a mean average complexity rating of 3.86, making the framework relatively easy to navigate and extend.
 
 The project's structure avoids excessive depth, resulting in a mean average file depth of 1.15. This simplicity is reflected in its robust error analysis, with no parsing errors and a solid test-to-file ratio demonstrating good coverage. Flask's support for extensions and integration with other technologies like Celery and JavaScript enriches its practicality and flexibility for modern web applications.

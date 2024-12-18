@@ -1,1 +1,3 @@
+# What a framework should look like
+
 Not enough good can be said about a mature framework that offers such an amazing value to the user. Django's code base is battle-tested and refined in a way that few code bases are, which is reflected in stellar complexity metrics. For a project that offers so much out of the box - routing, templating, administration interfaces, a custom ORM, and a thriving ecosystem - it has a remarkably small footprint and a threadbare dependency chain. Django is the model of a production-grade OSS project.

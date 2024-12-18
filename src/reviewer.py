@@ -21,7 +21,7 @@ class Reviewer:
             raise FileNotFoundError("Analysis not found")
         analysis = analysis.read_text()
 
-        example_reviews = ("django", "langchain-monorepo", "promptic",)
+        example_reviews = ("django", "langchain-monorepo", "promptic", "retrollm",)
         example_prompt = ""
         for example in example_reviews:
             review = self.reviews / example / "review.md" if output == "md" else self.reviews / example / "review.json"
@@ -41,10 +41,19 @@ class Reviewer:
             model="gpt-4o",
             messages=prompts
         )
-        response_raw = response.choices[0].message.content
+        response_content = response.choices[0].message.content
+        if "```" in response_content:
+            response_content = response_content.split("```")[1].strip(f"{output}\n")
         if output == "md":
-            return response_raw.split("```")[1].strip("md\n")
-        return response_raw
+            prompts = [
+                {"role":"system", "content": "You are a software pundit. Update the following review to be concise and casual in tone. Do not sugarcoat critisism or compliments - be direct and entertaining in your review."},
+                {"role":"user", "content": response_content}
+            ]
+            return self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=prompts
+            ).choices[0].message.content
+        return response_content
 
     def review(self, subject: str)->None:
         """generate a review and save it"""

@@ -1,0 +1,39 @@
+{
+  "project_name": "crewai",
+  "is_a_package": true,
+  "self.github_url": "https://github.com/crewAIInc/crewAI.git",
+  "github_stats": {
+    "name": "crewAI",
+    "language": "Python",
+    "commits": 1035,
+    "newest_commit": "2024-12-18 13:47:44",
+    "oldest_commit": "2023-10-27 04:02:09"
+  },
+  "summary": "CrewAI is a framework designed for orchestrating collaborative autonomous AI agents, enabling them to work together on complex tasks by sharing roles and goals, much like a well-coordinated team. The project provides tools for setting up and managing these multi-agent systems through Python, offering features like role-based agent design, task management, and integration with major language models, including OpenAI. CrewAI supports flexibility in task execution through sequential and hierarchical processes, making it suitable for diverse applications such as smart assistants, automated customer service, and research teams.",
+  "codebase_size": "473.8 M",
+  "total_package_size": "904.5 M",
+  "immediate_dependencies": 22,
+  "total_number_of_dependencies_in_deps_chain": 291,
+  "deepest_file_path": 17,
+  "number_of_files": 23344,
+  "number_of_tests": 26792,
+  "package_tree_analysis_excluding_test_files": {
+    "count_of_errors_while_parsing": 11,
+    "max_depth": 48,
+    "mean_average_depth": 1.19,
+    "max_depth_function": "__init__.add_known_models",
+    "standard_deviation": 0.857,
+    "mean_average_depth_excluding_ones": 2.59,
+    "standard_deviation_excluding_ones": 2.001
+  },
+  "package_complexity": {
+    "mean_average_complexity": 4.87,
+    "max_complexity_function": "completion",
+    "max_complexity": 438,
+    "percent_high_complexity": 1.15
+  },
+  "error_analysis": {
+    "issues": "The code is far too complex for pyflakes to analyze, creating infinite recursion.",
+    "errors": "The code is far too complex for pyflakes to analyze, creating infinite recursion."
+  }
+}

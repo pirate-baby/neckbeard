@@ -1,0 +1,38 @@
+{
+  "package_name": "flask",
+  "github_url": "https://github.com/pallets/flask.git",
+  "github_stats": {
+    "name": "flask",
+    "language": "Python",
+    "commits": 5386,
+    "newest_commit": "2024-11-24 01:54:29",
+    "oldest_commit": "2010-04-06 11:12:57"
+  },
+  "summary": "Flask is a lightweight WSGI web application framework for Python that facilitates quick and easy project initialization while allowing scalability for more complex applications. It serves as a simple wrapper over Werkzeug and Jinja, giving developers the flexibility to choose their own tools and libraries. Flask's popularity is bolstered by community-provided extensions and its support for various functionalities like background tasks with Celery and integrating JavaScript Ajax for interaction.",
+  "codebase_size": "34.2 M",
+  "total_package_size": "55.6 M",
+  "immediate_dependencies": 6,
+  "total_number_of_dependencies_in_deps_chain": 20,
+  "deepest_file_path": 13,
+  "number_of_files": 2070,
+  "number_of_tests": 407,
+  "package_tree_analysis_excluding_test_files": {
+    "count_of_errors_while_parsing": 0,
+    "max_depth": 14,
+    "mean_average_depth": 1.15,
+    "max_depth_function": "ansitowin32.call_win32",
+    "standard_deviation": 0.576,
+    "mean_average_depth_excluding_ones": 2.48,
+    "standard_deviation_excluding_ones": 1.175
+  },
+  "package_complexity": {
+    "mean_average_complexity": 3.86,
+    "max_complexity_function": "validate_https___setuptools_pypa_io_en_latest_references_keywords_html",
+    "max_complexity": 335,
+    "percent_high_complexity": 0.36
+  },
+  "error_analysis": {
+    "issues": 2182,
+    "errors": 0
+  }
+}

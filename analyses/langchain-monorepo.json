@@ -1,0 +1,38 @@
+{
+  "package_name": "langchain-monorepo",
+  "github_url": "https://github.com/langchain-ai/langchain.git",
+  "github_stats": {
+    "name": "langchain",
+    "language": "Jupyter Notebook",
+    "commits": 12257,
+    "newest_commit": "2024-12-18 16:45:48",
+    "oldest_commit": "2022-10-24 21:51:15"
+  },
+  "summary": "LangChain is a Python framework designed to facilitate the development of applications powered by large language models (LLMs). It provides comprehensive tools for building context-aware reasoning applications, including open-source libraries for various components and integrations, as well as a unified platform\u2014LangSmith\u2014for building, testing, and monitoring LLM applications. The framework supports key functionalities such as context-based question answering, structured output extraction, and chatbot creation. LangChain emphasizes productionization, enabling app inspection, monitoring, and deployment, while offering an ecosystem of components like LangGraph for creating stateful multi-actor applications.",
+  "codebase_size": "2.1 G",
+  "total_package_size": "3.5 G",
+  "immediate_dependencies": 1,
+  "total_number_of_dependencies_in_deps_chain": 509,
+  "deepest_file_path": 17,
+  "number_of_files": 35710,
+  "number_of_tests": 52576,
+  "package_tree_analysis_excluding_test_files": {
+    "count_of_errors_while_parsing": 6,
+    "max_depth": 41,
+    "mean_average_depth": 1.22,
+    "max_depth_function": "spin._latex",
+    "standard_deviation": 0.906,
+    "mean_average_depth_excluding_ones": 2.72,
+    "standard_deviation_excluding_ones": 1.989
+  },
+  "package_complexity": {
+    "mean_average_complexity": 4.22,
+    "max_complexity_function": "validate_https___setuptools_pypa_io_en_latest_userguide_pyproject_config_html",
+    "max_complexity": 352,
+    "percent_high_complexity": 0.75
+  },
+  "error_analysis": {
+    "issues": "The code is far too complex for pyflakes to analyze, creating infinite recursion.",
+    "errors": "The code is far too complex for pyflakes to analyze, creating infinite recursion."
+  }
+}

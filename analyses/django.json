@@ -1,0 +1,38 @@
+{
+  "package_name": "django",
+  "github_url": "https://github.com/django/django.git",
+  "github_stats": {
+    "name": "django",
+    "language": "Python",
+    "commits": 33167,
+    "newest_commit": "2024-12-15 21:04:29",
+    "oldest_commit": "2005-07-13 16:56:05"
+  },
+  "summary": "Django is a high-level Python web framework aimed at simplifying web development by emphasizing rapid development and clean, pragmatic design. It offers comprehensive documentation, tutorials, and a supportive community to help users get started and contribute to the project. The framework is maintained and continuously improved through community contributions and support for the Django Software Foundation.",
+  "codebase_size": "383.7 M",
+  "total_package_size": "428.7 M",
+  "immediate_dependencies": 3,
+  "total_number_of_dependencies_in_deps_chain": 14,
+  "deepest_file_path": 16,
+  "number_of_files": 16682,
+  "number_of_tests": 8726,
+  "package_tree_analysis_excluding_test_files": {
+    "count_of_errors_while_parsing": 1,
+    "max_depth": 25,
+    "mean_average_depth": 1.14,
+    "max_depth_function": "tests.test_cache_versioning_incr_decr",
+    "standard_deviation": 0.619,
+    "mean_average_depth_excluding_ones": 2.56,
+    "standard_deviation_excluding_ones": 1.468
+  },
+  "package_complexity": {
+    "mean_average_complexity": 3.62,
+    "max_complexity_function": "validate_https___setuptools_pypa_io_en_latest_references_keywords_html",
+    "max_complexity": 335,
+    "percent_high_complexity": 0.26
+  },
+  "error_analysis": {
+    "issues": 2478,
+    "errors": 3
+  }
+}

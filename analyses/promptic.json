@@ -1,0 +1,38 @@
+{
+  "package_name": "promptic",
+  "github_url": "https://github.com/knowsuchagency/promptic.git",
+  "github_stats": {
+    "name": "promptic",
+    "language": "Python",
+    "commits": 114,
+    "newest_commit": "2024-12-17 05:32:34",
+    "oldest_commit": "2024-05-27 06:57:43"
+  },
+  "summary": "Promptic is a Python library designed to simplify the development of large language model (LLM) applications, aiming to be as essential for LLM development as \"requests\" is for HTTP requests. It provides features such as type-safe structured outputs with Pydantic, easy-to-build LLM agents, prompt caching, built-in conversation memory, and flexibility in LLM provider selection using LiteLLM. Users can enhance their project with streaming support, resilient API calls using tenacity, and custom memory and caching solutions, making it a comprehensive toolkit for streamlined LLM application development.",
+  "codebase_size": "104.5 M",
+  "total_package_size": "208.5 M",
+  "immediate_dependencies": 3,
+  "total_number_of_dependencies_in_deps_chain": 100,
+  "deepest_file_path": 16,
+  "number_of_files": 5355,
+  "number_of_tests": 689,
+  "package_tree_analysis_excluding_test_files": {
+    "count_of_errors_while_parsing": 0,
+    "max_depth": 28,
+    "mean_average_depth": 1.14,
+    "max_depth_function": "_generate_schema.match_type",
+    "standard_deviation": 0.67,
+    "mean_average_depth_excluding_ones": 2.58,
+    "standard_deviation_excluding_ones": 1.647
+  },
+  "package_complexity": {
+    "mean_average_complexity": 4.82,
+    "max_complexity_function": "completion",
+    "max_complexity": 443,
+    "percent_high_complexity": 1.12
+  },
+  "error_analysis": {
+    "issues": 7761,
+    "errors": 0
+  }
+}

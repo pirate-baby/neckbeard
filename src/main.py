@@ -18,6 +18,7 @@ from readme_parser import parse_readme
 from github_parser import GithubParser
 from reviewer import Reviewer
 from master_dataset import MasterDataset
+from moisture_meter import check_dryness
 
 logging.basicConfig(level=logging.INFO, handlers=[logging.StreamHandler(sys.stdout)])
 logger = logging.getLogger(__name__)
@@ -36,6 +37,8 @@ class CodeBase:
         self.get_from_git()
         self.find_setup_file()
         self.install_requirements()
+        package_tree_analysis = analyze_package(self.codebase)
+        test_count = count_tests_in_package(self.codebase)["total_tests"]
         analysis_result = {
             "project_name": self.get_package_name(),
             "is_a_package": self.is_a_package,
@@ -47,9 +50,12 @@ class CodeBase:
             "immediate_dependencies": len(self.get_dependencies()),
             "total_number_of_dependencies_in_deps_chain": self.get_number_of_dependencies(),
             "deepest_file_path": self.get_deepest_file_path(),
+            "number_of_modules": self.get_number_of_files(filter_by=".py"),
             "number_of_files": self.get_number_of_files(),
-            "number_of_tests": count_tests_in_package(self.codebase)["total_tests"],
-            "package_tree_analysis_excluding_test_files": analyze_package(self.codebase),
+            "number_of_tests": test_count,
+            "naive_test_coverage_ratio": round(test_count / package_tree_analysis["count_of_functions"], 2),
+            "dryness": check_dryness(self.filtered_codebase),
+            "package_tree_analysis": package_tree_analysis,
             "package_complexity": get_package_complexity(self.codebase),
             "error_analysis": flake_package(self.codebase)
 
@@ -200,14 +206,17 @@ class CodeBase:
         return num_dependencies
 
     def get_deepest_file_path(self) -> int:
-        """returns the number of directories in the deepest file path in the codebase"""
-        deepest_path = max([len(p.parts) for p in self.filtered_codebase if p.is_file()])
+        """returns the number of directories in the deepest file path to .py code in the codebase"""
+        deepest_path = max([len(p.parts) for p in self.filtered_codebase if p.is_file() and p.suffix == ".py"])
         logger.info(f"Deepest file path depth: {deepest_path}")
         return deepest_path
 
-    def get_number_of_files(self) -> int:
+    def get_number_of_files(self, filter_by:Optional[str]=None) -> int:
         """returns the number of files in the codebase"""
-        num_files = len([p for p in self.filtered_codebase if p.is_file()])
+        files = [p for p in self.filtered_codebase if p.is_file()]
+        if filter_by:
+            files = [f for f in files if f.suffix == filter_by]
+        num_files = len(files)
         logger.info(f"Number of files: {num_files}")
         return num_files
 

@@ -1,6 +1,64 @@
 [
   {
     "analysis": {
+      "project_name": "neckbeard",
+      "is_a_package": false,
+      "self.github_url": "https://github.com/pirate-baby/neckbeard.git",
+      "github_stats": {
+        "name": "neckbeard",
+        "language": "Python",
+        "commits": 6,
+        "newest_commit": "2024-12-19 13:58:13",
+        "oldest_commit": "2024-12-12 22:41:53"
+      },
+      "summary": "Neckbeard.py is a Python tool designed to evaluate and rate GitHub repositories based on software best practices, particularly targeting the viability of AI-related repositories. It runs inside a Docker container, analyzing Python projects by examining aspects such as package setup, code complexity, dependency chains, and testing coverage. Neckbeard aims to help professionals quickly assess the readiness and reliability of repos, distinguishing genuine tools from over-hyped, underdeveloped projects.",
+      "codebase_size": "241.4 K",
+      "total_package_size": "93.8 M",
+      "immediate_dependencies": 10,
+      "total_number_of_dependencies_in_deps_chain": 155,
+      "deepest_file_path": 4,
+      "number_of_modules": 10,
+      "number_of_files": 70,
+      "number_of_tests": 0,
+      "naive_test_coverage_ratio": 0.0,
+      "dryness": {
+        "total_reviewed_nodes": 293,
+        "unique_nodes": 256,
+        "count_duplicate_nodes": 0,
+        "moisture_score": 0.0
+      },
+      "package_tree_analysis": {
+        "count_of_functions": 47,
+        "count_of_errors_while_parsing": 0,
+        "max_depth": 2,
+        "mean_average_depth": 1.02,
+        "max_depth_function": "cst_frame_depth.calculate_depth",
+        "standard_deviation": 0.144,
+        "mean_average_depth_excluding_ones": 2.0,
+        "standard_deviation_excluding_ones": 0.0
+      },
+      "package_complexity": {
+        "mean_average_complexity": 4.0,
+        "max_complexity_function": "analyze_package",
+        "max_complexity": 14,
+        "percent_high_complexity": 0.0
+      },
+      "error_analysis": {
+        "issues": 0,
+        "errors": 0
+      }
+    },
+    "review_data": {
+      "rating": 5,
+      "awards": [
+        "Minimalist Approach",
+        "Complexity Conquest"
+      ]
+    },
+    "review_body": "Neckbeard.py is a handy tool for cutting through the hype of AI projects on GitHub. It\u2019s all about quickly sniffing out the legit repos from the ones that overpromise. Despite having a tiny codebase and not many commits, it's cleverly designed to be useful and adaptable for various tasks.\n\nIt breaks down software quality metrics without being a headache to use. With insights into dependencies, code complexity, and project setup, you get an audit-style overview at a glance.\n\nBut watch out\u2014there's zero testing going on here, which leaves some doubt about how well it performs under different conditions. Adding test suites and continuous integration would make it more reliable. Despite this, its clean implementation speaks volumes.\n\nNeckbeard is a must-have for anyone who wants to sift through AI repos with a no-nonsense attitude."
+  },
+  {
+    "analysis": {
       "project_name": "open_clip_torch",
       "is_a_package": true,
       "self.github_url": "https://github.com/mbzuai-oryx/unimed-clip.git",
@@ -410,15 +468,24 @@
         "newest_commit": "2024-12-19 12:41:05",
         "oldest_commit": "2023-11-24 23:44:07"
       },
-      "summary": "Phidata is a comprehensive framework designed to create advanced multi-modal agents that integrate memory, knowledge, tools, and reasoning capabilities. This framework allows developers to build teams of agents that work together, enabling complex problem-solving and interactive user communication via a user-friendly Agent UI. With built-in features such as multi-agent orchestration, structured outputs, and monitoring capabilities, Phidata provides a streamlined environment for developing and managing intelligent agents across various applications.",
+      "summary": "Phidata is a framework designed for building multi-modal agents that incorporate memory, knowledge, tools, and reasoning. It allows for the creation of teams of agents working collaboratively to solve problems and provides a user-friendly Agent UI for interaction. The framework includes features like multi-agent orchestration, structured outputs, and an experimental reasoning capability, designed to enhance the development of powerful and flexible agents for various applications.",
       "codebase_size": "76.0 M",
       "total_package_size": "123.5 M",
       "immediate_dependencies": 10,
       "total_number_of_dependencies_in_deps_chain": 61,
       "deepest_file_path": 9,
+      "number_of_modules": 1808,
       "number_of_files": 2034,
-      "number_of_tests": 111,
-      "package_tree_analysis_excluding_test_files": {
+      "number_of_tests": 0,
+      "naive_test_coverage_ratio": 0.0,
+      "dryness": {
+        "total_reviewed_nodes": 125028,
+        "unique_nodes": 8092,
+        "count_duplicate_nodes": 7458,
+        "moisture_score": 92.17
+      },
+      "package_tree_analysis": {
+        "count_of_functions": 1909,
         "count_of_errors_while_parsing": 0,
         "max_depth": 5,
         "mean_average_depth": 1.06,
@@ -439,14 +506,12 @@
       }
     },
     "review_data": {
-      "rating": 8,
+      "rating": 6,
       "awards": [
-        "Polished Product",
-        "All-In-One Framework",
-        "Streamlined AI"
+        "Scalable Agent Framework",
+        "Low Error Count"
       ]
     },
-    "review_title": "Phidata: Streamline Your Multi-Modal Agent Deployment",
-    "review_body": "\nPhidata aims to simplify the creation and management of advanced multi-modal agents. It offers memory, knowledge, and reasoning features in a user-friendly interface, making it easier to build intelligent agent teams.\n\n## Code Metrics\n\nPhidata's codebase is light at 76MB, with a package size of 123.5MB over 2,034 files. With 10 immediate and 61 total dependencies, it's organized but might be a hassle for those wary of dependency bloat. Its shallow codebase (max depth 5, average depth 1.06) suggests solid design, and there are no parsing errors\u2014always a plus. It keeps complexity in check with an average function complexity of 5.89, maxing out at 49, and only 2.63% of functions are overly complex. However, only 111 tests raise coverage concerns for its advanced features.\n\n## Concerns\n\nPhidata's high number of dependencies could be a chore to manage. The current unit tests are inadequate for ensuring stable complex multi-agent orchestration. More testing would boost reliability.\n\n## Conclusion\n\nPhidata is a decent pick for developers moving into multi-agent systems. It\u2019s organized and relatively low on errors, but it needs more extensive testing to back up its promises. If you're keen on building smart agent teams, it's worth a look\u2014but keep an eye on those tests and dependencies."
+    "review_body": "## Phidata Review: Big Ideas, Shaky Execution\n\nPhidata aims to revolutionize agent frameworks with its collaborative problem-solving approach and slick interface. It boasts some neat features like experimental reasoning, but it's held back by poor execution.\n\nThe biggest problem? No test coverage. This oversight makes its reliability questionable, scaring off developers who need solid testing in their projects. \n\nIt's also plagued with code redundancy, which suggests maintenance nightmares ahead. Ignoring the DRY principle means more bugs and a tough time with future updates.\n\nStill, Phidata shows promise with its manageable complexity profile. The code isn\u2019t buried in layers of complexity, which aids readability, even if it's a bit verbose.\n\nBottom line: Phidata has a bold concept but needs serious work. Focus on building tests and trimming code excess to make it more reliable for developers. It's got potential but isn't there yet."
   }
 ]

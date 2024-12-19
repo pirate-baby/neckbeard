@@ -1,0 +1,46 @@
+{
+  "project_name": "letta",
+  "is_a_package": true,
+  "self.github_url": "https://github.com/letta-ai/letta.git",
+  "github_stats": {
+    "name": "letta",
+    "language": "Python",
+    "commits": 1676,
+    "newest_commit": "2024-12-19 23:16:36",
+    "oldest_commit": "2023-10-11 07:41:24"
+  },
+  "summary": "Letta is an open-source framework designed for building stateful large language model (LLM) applications, enabling the creation of stateful agents with advanced reasoning capabilities and long-term memory. The framework is model-agnostic and provides a development environment for building, testing, interacting, and observing agents, with functionalities accessible through Docker, pip, and REST APIs. Letta offers tools for agent persistence, supports multiple LLM API backends, and aims to facilitate bot-like interfaces for various applications, such as automating customer support or creating personalized chat interfaces.",
+  "codebase_size": "122.0 M",
+  "total_package_size": "571.6 M",
+  "immediate_dependencies": 60,
+  "total_number_of_dependencies_in_deps_chain": 331,
+  "deepest_file_path": 9,
+  "number_of_modules": 283,
+  "number_of_files": 504,
+  "number_of_tests": 297,
+  "naive_test_coverage_ratio": 0.27,
+  "dryness": {
+    "total_hashes": 11127,
+    "percentage_duplicates": 22.81
+  },
+  "package_tree_analysis": {
+    "count_of_functions": 1115,
+    "count_of_errors_while_parsing": 0,
+    "max_depth": 18,
+    "mean_average_depth": 1.24,
+    "max_depth_function": "cli.run",
+    "standard_deviation": 1.069,
+    "mean_average_depth_excluding_ones": 3.01,
+    "standard_deviation_excluding_ones": 2.469
+  },
+  "package_complexity": {
+    "mean_average_complexity": 4.27,
+    "max_complexity_function": "run_agent_loop",
+    "max_complexity": 71,
+    "percent_high_complexity": 1.09
+  },
+  "error_analysis": {
+    "issues": 0,
+    "errors": 0
+  }
+}

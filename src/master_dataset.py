@@ -1,5 +1,7 @@
 import json
+import datetime
 from pathlib import Path
+#import humanize
 
 
 class MasterDataset:
@@ -37,3 +39,26 @@ class MasterDataset:
                 records.append(self.merge_record(record_name))
         master_dataset = Path("/app/master_dataset.json")
         master_dataset.write_text(json.dumps(records, indent=2))
+
+class Snarkizer:
+
+    def __init__(self, record_name: str):
+        self.record = json.loads(Path(f"/app/analyses/{record_name}.json").read_text())
+
+
+    def pretty_dates(self):
+        today = datetime.datetime.now()
+        newest = self.record["analysis"]["newest_commit"]
+        oldest = self.record["analysis"]["oldest_commit"]
+
+        def human(datevalue):
+            return humanize.naturaltime(today - datevalue)
+
+        def more_pretty(datevalue):
+            if today - datevalue < datetime.timedelta(days=1):
+                return datevalue.strftime("%H:%M %p")
+            else:
+                return datevalue.strftime("%b %d, %Y")
+
+        self.record["analysis"]["newest_commit"] = f"{human(newest)} ago ({more_pretty(newest)})"
+        self.record["analysis"]["oldest_commit"] = f"{human(oldest)} ago ({more_pretty(oldest)})"

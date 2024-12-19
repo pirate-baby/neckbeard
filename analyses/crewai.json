@@ -9,31 +9,40 @@
     "newest_commit": "2024-12-18 13:47:44",
     "oldest_commit": "2023-10-27 04:02:09"
   },
-  "summary": "CrewAI is a framework designed for orchestrating collaborative autonomous AI agents, enabling them to work together on complex tasks by sharing roles and goals, much like a well-coordinated team. The project provides tools for setting up and managing these multi-agent systems through Python, offering features like role-based agent design, task management, and integration with major language models, including OpenAI. CrewAI supports flexibility in task execution through sequential and hierarchical processes, making it suitable for diverse applications such as smart assistants, automated customer service, and research teams.",
-  "codebase_size": "473.8 M",
-  "total_package_size": "904.5 M",
+  "summary": "CrewAI is a robust framework designed for coordinating role-playing, autonomous AI agents to collaboratively solve complex tasks. It facilitates seamless interaction among AI agents by assigning roles, sharing objectives, and executing tasks through flexible process management. The framework supports various large language models, offers a highly customizable setup, and promotes collaborative intelligence crucial for developing sophisticated AI solutions.",
+  "codebase_size": "117.7 M",
+  "total_package_size": "548.4 M",
   "immediate_dependencies": 22,
   "total_number_of_dependencies_in_deps_chain": 291,
-  "deepest_file_path": 17,
-  "number_of_files": 23344,
-  "number_of_tests": 26792,
-  "package_tree_analysis_excluding_test_files": {
-    "count_of_errors_while_parsing": 11,
-    "max_depth": 48,
-    "mean_average_depth": 1.19,
-    "max_depth_function": "__init__.add_known_models",
-    "standard_deviation": 0.857,
-    "mean_average_depth_excluding_ones": 2.59,
-    "standard_deviation_excluding_ones": 2.001
+  "deepest_file_path": 10,
+  "number_of_modules": 205,
+  "number_of_files": 524,
+  "number_of_tests": 445,
+  "naive_test_coverage_ratio": 0.66,
+  "dryness": {
+    "total_hashes": 7859,
+    "unique_hashes": 2686,
+    "duplicate_hashes": 2349,
+    "percentage_duplicates": 29.89
+  },
+  "package_tree_analysis": {
+    "count_of_functions": 675,
+    "count_of_errors_while_parsing": 4,
+    "max_depth": 6,
+    "mean_average_depth": 1.12,
+    "max_depth_function": "task._execute_core",
+    "standard_deviation": 0.482,
+    "mean_average_depth_excluding_ones": 2.5,
+    "standard_deviation_excluding_ones": 0.971
   },
   "package_complexity": {
-    "mean_average_complexity": 4.87,
-    "max_complexity_function": "completion",
-    "max_complexity": 438,
-    "percent_high_complexity": 1.15
+    "mean_average_complexity": 3.63,
+    "max_complexity_function": "create_crew",
+    "max_complexity": 34,
+    "percent_high_complexity": 0.79
   },
   "error_analysis": {
-    "issues": "The code is far too complex for pyflakes to analyze, creating infinite recursion.",
-    "errors": "The code is far too complex for pyflakes to analyze, creating infinite recursion."
+    "issues": 0,
+    "errors": 0
   }
 }

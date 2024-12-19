@@ -49,7 +49,7 @@ def exclude_unwanted_paths(package_path: Path) -> list:
             continue
         if file_path.name == "venv":
             continue
-        if "test" in file_path.parts:
+        if "test" in file_path.parts or "tests" in file_path.parts:
             continue
         filtered_paths.append(str(file_path))
     return filtered_paths

@@ -1,3 +1,4 @@
+from typing import Generator
 from pathlib import Path
 import libcst as cst
 from typing import Dict, List, Optional, Tuple
@@ -61,6 +62,14 @@ def count_tests_in_module(file_content: str) -> int:
         logger.error(f"Syntax error in module, skipping: {e}")
         return 0
 
+
+def filtered_codebase(codebase:Path, glob_by:Optional[str]="*") -> Generator:
+    """remove venv files from codebase counts"""
+    for p in codebase.rglob(glob_by):
+        if "venv" not in p.parts:
+            yield p
+
+
 def count_tests_in_package(package_path: Path) -> Dict[str, int]:
     """
     Counts the number of test functions and methods in an entire package.
@@ -75,10 +84,11 @@ def count_tests_in_package(package_path: Path) -> Dict[str, int]:
     total_test_count = 0
     tests_per_file: Dict[str, int] = {}
 
-    for file_path in package_path.rglob("*.py"):
+    for file_path in filtered_codebase(package_path, glob_by="*.py"):
         # Identify test files
         if (
             "test" in file_path.parts  # Directory contains 'test'
+            or "tests" in file_path.parts  # Directory contains 'tests'
             or file_path.stem.startswith("test_")  # File starts with 'test_'
             or file_path.stem.endswith("_test")    # File ends with '_test'
         ):

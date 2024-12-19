@@ -1,38 +1,46 @@
 {
-  "package_name": "django",
-  "github_url": "https://github.com/django/django.git",
+  "project_name": "django",
+  "is_a_package": true,
+  "self.github_url": "https://github.com/django/django.git",
   "github_stats": {
     "name": "django",
     "language": "Python",
-    "commits": 33167,
-    "newest_commit": "2024-12-15 21:04:29",
+    "commits": 33168,
+    "newest_commit": "2024-12-17 08:30:33",
     "oldest_commit": "2005-07-13 16:56:05"
   },
-  "summary": "Django is a high-level Python web framework aimed at simplifying web development by emphasizing rapid development and clean, pragmatic design. It offers comprehensive documentation, tutorials, and a supportive community to help users get started and contribute to the project. The framework is maintained and continuously improved through community contributions and support for the Django Software Foundation.",
-  "codebase_size": "383.7 M",
-  "total_package_size": "428.7 M",
+  "summary": "Django is a high-level Python web framework designed to facilitate rapid development and promote clean, pragmatic design principles. It offers thorough documentation to guide users through installation, tutorials, deployment, and other aspects of usage. The project encourages community involvement and contributions, and provides resources for support and collaboration, including IRC, mailing lists, Discord, and forums.",
+  "codebase_size": "1.1 G",
+  "total_package_size": "1.2 G",
   "immediate_dependencies": 3,
   "total_number_of_dependencies_in_deps_chain": 14,
-  "deepest_file_path": 16,
-  "number_of_files": 16682,
-  "number_of_tests": 8726,
-  "package_tree_analysis_excluding_test_files": {
-    "count_of_errors_while_parsing": 1,
-    "max_depth": 25,
-    "mean_average_depth": 1.14,
-    "max_depth_function": "tests.test_cache_versioning_incr_decr",
-    "standard_deviation": 0.619,
-    "mean_average_depth_excluding_ones": 2.56,
-    "standard_deviation_excluding_ones": 1.468
+  "deepest_file_path": 11,
+  "number_of_modules": 3698,
+  "number_of_files": 10567,
+  "number_of_tests": 16311,
+  "naive_test_coverage_ratio": 2.6,
+  "dryness": {
+    "total_hashes": 226632,
+    "percentage_duplicates": 7.12
+  },
+  "package_tree_analysis": {
+    "count_of_functions": 6264,
+    "count_of_errors_while_parsing": 0,
+    "max_depth": 9,
+    "mean_average_depth": 1.12,
+    "max_depth_function": "i18n.set_language",
+    "standard_deviation": 0.494,
+    "mean_average_depth_excluding_ones": 2.43,
+    "standard_deviation_excluding_ones": 1.022
   },
   "package_complexity": {
-    "mean_average_complexity": 3.62,
-    "max_complexity_function": "validate_https___setuptools_pypa_io_en_latest_references_keywords_html",
-    "max_complexity": 335,
-    "percent_high_complexity": 0.26
+    "mean_average_complexity": 3.28,
+    "max_complexity_function": "templatize",
+    "max_complexity": 51,
+    "percent_high_complexity": 0.15
   },
   "error_analysis": {
-    "issues": 2478,
-    "errors": 3
+    "issues": 0,
+    "errors": 0
   }
 }

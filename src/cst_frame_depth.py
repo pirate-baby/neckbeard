@@ -118,7 +118,8 @@ def analyze_package(package_path: Path) -> dict:
     for file_path in package_path.rglob("*.py"):
         # Exclude test files and directories
         if (
-            "test" in file_path.parts  # Directory or subdirectory contains 'test'
+            "test" in file_path.parts
+            or "tests" in file_path.parts  # Directory or subdirectory contains 'test'
             or file_path.stem.startswith("test_")  # File starts with 'test_'
             or file_path.stem.endswith("_test")    # File ends with '_test'
         ):
@@ -171,6 +172,7 @@ def analyze_package(package_path: Path) -> dict:
         standard_deviation_of_depth_excluding_ones = 0
 
     return {
+        "count_of_functions": len(function_graph),
         "count_of_errors_while_parsing": len(errors),
         "max_depth": total_depths.get(max_result, 0) if max_result else 0,
         "mean_average_depth": round(mean_average_depth,2),

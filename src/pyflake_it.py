@@ -41,10 +41,24 @@ class OverloadReporter:
         self._stdout.append(str(message) + '\n')
 
 
+def exclude_unwanted_paths(package_path: Path) -> list:
+    """Exclude test and venv paths from the package path."""
+    filtered_paths = []
+    for file_path in package_path.rglob("*.py"):
+        if not file_path.is_dir():
+            continue
+        if file_path.name == "venv":
+            continue
+        if "test" in file_path.parts:
+            continue
+        filtered_paths.append(str(file_path))
+    return filtered_paths
+
 def flake_package(package_path: Path, detailed:bool = False) -> dict:
     reporter = OverloadReporter()
+    paths = [str(p.absolute()) for p in exclude_unwanted_paths(package_path)]
     try:
-        checkRecursive([str(package_path.absolute())], reporter=reporter)
+        checkRecursive(paths, reporter=reporter)
         if detailed:
             return {"issues": reporter._stdout, "errors": reporter._stderr}
         return {"issues": len(reporter._stdout), "errors": len(reporter._stderr)}

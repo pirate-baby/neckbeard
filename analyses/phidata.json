@@ -1,0 +1,39 @@
+{
+  "project_name": "phidata",
+  "is_a_package": true,
+  "self.github_url": "https://github.com/phidatahq/phidata.git",
+  "github_stats": {
+    "name": "phidata",
+    "language": "Python",
+    "commits": 2645,
+    "newest_commit": "2024-12-19 12:41:05",
+    "oldest_commit": "2023-11-24 23:44:07"
+  },
+  "summary": "Phidata is a comprehensive framework designed to create advanced multi-modal agents that integrate memory, knowledge, tools, and reasoning capabilities. This framework allows developers to build teams of agents that work together, enabling complex problem-solving and interactive user communication via a user-friendly Agent UI. With built-in features such as multi-agent orchestration, structured outputs, and monitoring capabilities, Phidata provides a streamlined environment for developing and managing intelligent agents across various applications.",
+  "codebase_size": "76.0 M",
+  "total_package_size": "123.5 M",
+  "immediate_dependencies": 10,
+  "total_number_of_dependencies_in_deps_chain": 61,
+  "deepest_file_path": 9,
+  "number_of_files": 2034,
+  "number_of_tests": 111,
+  "package_tree_analysis_excluding_test_files": {
+    "count_of_errors_while_parsing": 0,
+    "max_depth": 5,
+    "mean_average_depth": 1.06,
+    "max_depth_function": "06_memories_and_summaries_sqlite_async.main",
+    "standard_deviation": 0.302,
+    "mean_average_depth_excluding_ones": 2.33,
+    "standard_deviation_excluding_ones": 0.538
+  },
+  "package_complexity": {
+    "mean_average_complexity": 5.89,
+    "max_complexity_function": "main",
+    "max_complexity": 49,
+    "percent_high_complexity": 2.63
+  },
+  "error_analysis": {
+    "issues": 0,
+    "errors": 0
+  }
+}

@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Generator
 import json
 from typing import Optional
 import toml
@@ -169,7 +169,9 @@ class CodeBase:
 
     def get_codebase_size(self) -> int:
         """compute the disk size of the codebase"""
-        size = self.get_size(self.codebase)
+        size = 0
+        for dir in self.filtered_codebase:
+            size += self.get_size(dir)
         logger.info(f"Codebase size: {size} bytes")
         return size
 
@@ -199,15 +201,22 @@ class CodeBase:
 
     def get_deepest_file_path(self) -> int:
         """returns the number of directories in the deepest file path in the codebase"""
-        deepest_path = max([len(p.parts) for p in self.codebase.rglob("*") if p.is_file()])
+        deepest_path = max([len(p.parts) for p in self.filtered_codebase if p.is_file()])
         logger.info(f"Deepest file path depth: {deepest_path}")
         return deepest_path
 
     def get_number_of_files(self) -> int:
         """returns the number of files in the codebase"""
-        num_files = len([p for p in self.codebase.rglob("*") if p.is_file()])
+        num_files = len([p for p in self.filtered_codebase if p.is_file()])
         logger.info(f"Number of files: {num_files}")
         return num_files
+
+    @property
+    def filtered_codebase(self) -> Generator:
+        """remove venv files from codebase counts"""
+        for p in self.codebase.rglob("*"):
+            if "venv" not in p.parts:
+                yield p
 
     @classmethod
     def get_size(cls, path: Path) -> int:

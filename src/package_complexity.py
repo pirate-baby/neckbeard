@@ -11,18 +11,18 @@ logger = logging.getLogger(__name__)
 def is_test_file(file_path: Path) -> bool:
     """
     Determine if a file is a test file based on its name or path.
-
-    Args:
-        file_path (Path): Path to the file to check.
-
-    Returns:
-        bool: True if it's a test file, otherwise False.
     """
     return (
         "test" in file_path.parts  # Directory contains 'test'
         or file_path.stem.startswith("test_")  # File starts with 'test_'
         or file_path.stem.endswith("_test")    # File ends with '_test'
     )
+
+def is_venv_file(file_path: Path) -> bool:
+    """
+    Determine if a file is a virtual environment file based on its path.
+    """
+    return "venv" in file_path.parts
 
 
 def analyze_file_complexity(file_path: Path) -> List[Tuple[str, int]]:
@@ -65,9 +65,9 @@ def analyze_package_complexity(package_path: Path) -> Dict[str, List[Tuple[str, 
 
     logger.info(f"Analyzing package for cyclomatic complexity: {package_path}")
     for file_path in package_path.rglob("*.py"):
-        if is_test_file(file_path):
-            logger.info(f"Skipping test file: {file_path}")
-            continue  # Skip test files
+        if is_test_file(file_path) or is_venv_file(file_path):
+            logger.info(f"Skipping excluded file: {file_path}")
+            continue
 
         logger.info(f"Analyzing file: {file_path}")
         file_complexities = analyze_file_complexity(file_path)

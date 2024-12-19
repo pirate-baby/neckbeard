@@ -124,6 +124,9 @@ def analyze_package(package_path: Path) -> dict:
         ):
             logger.info(f"Skipping test file: {file_path}")
             continue
+        if "venv" in file_path.parts:
+            logger.info(f"Skipping virtual environment file: {file_path}")
+            continue
 
         logger.info(f"Processing file: {file_path}")
         try:

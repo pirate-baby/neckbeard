@@ -1,4 +1,5 @@
 from typing import Union, Generator
+from datetime import datetime
 import json
 from typing import Optional
 import toml
@@ -19,6 +20,7 @@ from github_parser import GithubParser
 from reviewer import Reviewer
 from master_dataset import MasterDataset
 from moisture_meter import check_dryness
+from security import Security
 
 logging.basicConfig(level=logging.INFO, handlers=[logging.StreamHandler(sys.stdout)])
 logger = logging.getLogger(__name__)
@@ -41,10 +43,13 @@ class CodeBase:
         test_count = count_tests_in_package(self.codebase)["total_tests"]
         analysis_result = {
             "project_name": self.get_package_name(),
+            "analyzed_at": datetime.now().isoformat(),
             "is_a_package": self.is_a_package,
             "self.github_url": self.github_url,
             "github_stats": GithubParser().analyze_repo(self.github_url),
             "summary": parse_readme(self.github_url, self.codebase),
+            "raw_codebase_size": self.get_codebase_size(),
+            "raw_total_package_size": self.get_total_package_size(),
             "codebase_size": self.format_bytes(self.get_codebase_size()),
             "total_package_size": self.format_bytes(self.get_total_package_size()),
             "immediate_dependencies": len(self.get_dependencies()),
@@ -57,7 +62,8 @@ class CodeBase:
             "dryness": check_dryness(self.filtered_codebase),
             "package_tree_analysis": package_tree_analysis,
             "package_complexity": get_package_complexity(self.codebase),
-            "error_analysis": flake_package(self.codebase)
+            "error_analysis": flake_package(self.codebase),
+            "security_risks": [f"{v} instances of {k}" for k, v in Security().get_security_risk_codes(self.filtered_codebase).items()]
 
         }
         logger.info("Analysis complete")
@@ -74,6 +80,7 @@ class CodeBase:
 
     def find_setup_file(self) -> None:
         """find the toml/setup.py file in the codebase"""
+        self.is_a_package = False
         for req_file in ["pyproject.toml", "setup.py"]:
             req_file = self.codebase / req_file
             if req_file.exists():
@@ -239,6 +246,7 @@ class CodeBase:
 
     @classmethod
     def format_bytes(cls, num) -> str:
+        num = int(num)
         step = 1024.0
         for x in ['b', 'K', 'M', 'G', 'T']:
             if num < step:
@@ -258,8 +266,8 @@ if __name__ == "__main__":
     file_path = save_path / f"{safe_name}.json"
     file_path.write_text(analysis)
     print("Analysis complete. Results saved to", save_path)
-    print("writing reviews...")
-    Reviewer().review(safe_name)
+    #print("writing reviews...")
+    #Reviewer().review(safe_name)
 
-    print("re-building master dataset...")
-    MasterDataset().generate()
+    #print("re-building master dataset...")
+    #MasterDataset().generate()

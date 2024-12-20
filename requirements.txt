@@ -9,3 +9,4 @@ openai~=1.58.1
 PyGithub~=2.5.0
 pydantic-settings~=2.7.0
 humanize~=4.11.0
+bandit~=1.8.0

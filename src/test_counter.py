@@ -23,7 +23,7 @@ class TestCounter(cst.CSTVisitor):
         """
         # Check for functions or methods with names starting with 'test_'
         if node.name.value.startswith("test_"):
-            logger.info(f"Found test function/method: {node.name.value}")
+            logger.debug(f"Found test function/method: {node.name.value}")
             self.test_count += 1
 
     def visit_ClassDef(self, node: cst.ClassDef):
@@ -32,7 +32,7 @@ class TestCounter(cst.CSTVisitor):
         Test classes typically start with 'Test'.
         """
         if node.name.value.startswith("Test"):
-            logger.info(f"Entering test class: {node.name.value}")
+            logger.debug(f"Entering test class: {node.name.value}")
             self.in_test_class = True
 
     def leave_ClassDef(self, node: cst.ClassDef):
@@ -40,7 +40,7 @@ class TestCounter(cst.CSTVisitor):
         Leaves a test class scope.
         """
         if node.name.value.startswith("Test"):
-            logger.info(f"Exiting test class: {node.name.value}")
+            logger.debug(f"Exiting test class: {node.name.value}")
             self.in_test_class = False
 
 def count_tests_in_module(file_content: str) -> int:
@@ -80,7 +80,7 @@ def count_tests_in_package(package_path: Path) -> Dict[str, int]:
     Returns:
         dict: A dictionary summarizing total tests and tests per file.
     """
-    logger.info(f"Scanning package at path: {package_path}")
+    logger.debug(f"Scanning package at path: {package_path}")
     total_test_count = 0
     tests_per_file: Dict[str, int] = {}
 
@@ -92,7 +92,7 @@ def count_tests_in_package(package_path: Path) -> Dict[str, int]:
             or file_path.stem.startswith("test_")  # File starts with 'test_'
             or file_path.stem.endswith("_test")    # File ends with '_test'
         ):
-            logger.info(f"Processing test file: {file_path}")
+            logger.debug(f"Processing test file: {file_path}")
             try:
                 source_code = file_path.read_text(encoding="utf-8")
                 test_count = count_tests_in_module(source_code)

@@ -1,7 +1,12 @@
-Neckbeard.py is a handy tool for cutting through the hype of AI projects on GitHub. It’s all about quickly sniffing out the legit repos from the ones that overpromise. Despite having a tiny codebase and not many commits, it's cleverly designed to be useful and adaptable for various tasks.
+# Have you no shame?
 
-It breaks down software quality metrics without being a headache to use. With insights into dependencies, code complexity, and project setup, you get an audit-style overview at a glance.
+You have to appreciate in a library that aims to stand in judgment of software packages, and is itself a steaming pile of code-shit. That library is `Neckbeard`. Never has there been such a perfect example of throwing stones from a glass house.
 
-But watch out—there's zero testing going on here, which leaves some doubt about how well it performs under different conditions. Adding test suites and continuous integration would make it more reliable. Despite this, its clean implementation speaks volumes.
+The core code is tiny, weighing in at less than a meg. Even fully loaded with dependencies, Neckbeard manages to stay under 100M which is plenty reasonable - the library is at least making the effort to appear lean on the imports. The stack trace depths are respectable at first glance and complexity shows better than it should, at least on paper.
 
-Neckbeard is a must-have for anyone who wants to sift through AI repos with a no-nonsense attitude.
+However, this illusion falls away when you actually look at the code; where a Python package should be, a jumble of single-level scripts and half-baked modules are instead poured into an overstuffed source directory. The architecture of `Neckbeard` is a spattering of classes, nested methods and modules piled high with disorganized functions. Naming is more random and scattershot than pronouns at a barista convention. It isn’t clear how much of this code was written by o1 vs sonnet, but it is clear that a human with even rudimentary programming chops had very little to do with the bulk of this masterpiece.
+
+Test coverage is easy - there is none. Not one test, even on the code that tests the test coverage of other software’s tests. Because why bother to write tests if you can’t even be bothered to write the code in the first place?
+
+ In short, `Neckbeard` can be described in two words:
+![fucking embarrassing](https://64.media.tumblr.com/201c6288dc3788843dfa1fd6cfc27abb/f8056965cca18133-f3/s500x750/3153bd976089a7daedef649dfc07728d8cae4a7e.gifv)

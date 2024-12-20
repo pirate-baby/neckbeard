@@ -1,3 +1,4 @@
+import math
 from pathlib import Path
 from radon.complexity import cc_visit, ComplexityVisitor
 from typing import Dict, List, Tuple
@@ -49,6 +50,29 @@ def analyze_file_complexity(file_path: Path) -> List[Tuple[str, int]]:
         logger.error(f"Error analyzing file {file_path}: {e}")
         return []
 
+def _complexity_score(mean_complexity, max_complexity, percent_high_complexity,
+                                mean_average_weight=2.0, max_complexity_weight=0.5, high_complexity_weight=1.0, exponent=2):
+    """
+    Calculate an overall complexity score for a software codebase.
+
+    Args:
+        mean_complexity (float): Mean average complexity of the package.
+        max_complexity (float): Maximum complexity of the package.
+        percent_high_complexity (float): Percentage of high-complexity functions.
+        mean_average_weight (float): Weight for mean average complexity. Default is 2.0.
+        max_complexity_weight (float): Weight for max complexity. Default is 0.5.
+        high_complexity_weight (float): Weight for high-complexity percentage. Default is 1.0.
+        exponent (int): Exponent to penalize mean complexity more heavily. Default is 2.
+
+    Returns:
+        float: The overall complexity score.
+    """
+    mean_component = mean_average_weight * (mean_complexity ** exponent)
+    max_component = max_complexity_weight * math.log1p(max_complexity)
+    high_complexity_component = high_complexity_weight * percent_high_complexity
+    return mean_component + max_component + high_complexity_component
+
+
 
 def analyze_package_complexity(package_path: Path) -> Dict[str, List[Tuple[str, int]]]:
     """
@@ -75,9 +99,6 @@ def analyze_package_complexity(package_path: Path) -> Dict[str, List[Tuple[str, 
 
     return complexity_summary
 
-
-
-
 def summarize_complexity_results(results: Dict[str, List[Tuple[str, int]]]):
     """
     Summarizes the complexity results: total number of functions analyzed and
@@ -91,8 +112,7 @@ def summarize_complexity_results(results: Dict[str, List[Tuple[str, int]]]):
     max_complexity = {"function": None, "complexity": 0}
     highly_complex_functions = []
 
-    for file, functions in results.items():
-        print(f"\nFile: {file}")
+    for _, functions in results.items():
         if not functions:
             continue
 
@@ -111,11 +131,14 @@ def summarize_complexity_results(results: Dict[str, List[Tuple[str, int]]]):
         max_complexity_func = max_complexity["function"]
         percent_high_complexity = len(highly_complex_functions) / total_functions * 100
 
+        complexity_score = _complexity_score(avg_complexity, max_complexity_val, percent_high_complexity)
+
         return {
             "mean_average_complexity": round(avg_complexity, 2),
             "max_complexity_function": max_complexity_func,
             "max_complexity": max_complexity_val,
             "percent_high_complexity": round(percent_high_complexity, 2),
+            "complexity_score": round(complexity_score, 2),
         }
 
 

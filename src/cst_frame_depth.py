@@ -104,6 +104,39 @@ def resolve_total_depths(function_depths: Dict[str, int], call_graph: Dict[str, 
         calculate_depth(func, set())
     return total_depths
 
+def calculate_nested_score(stats:dict, max_depth_weight=3, mean_depth_weight=2, sd_weight=1):
+    """
+    Calculate a "nested" score based on stack depth statistics, with a strong emphasis on extreme nesting.
+    high scores indicate deep nesting, while low scores indicate shallow nesting.
+    Args:
+        stats (dict): A dictionary containing the following keys:
+            - max_depth (float): The maximum nesting depth in the codebase.
+            - mean_average_depth (float): The average depth of all functions.
+            - mean_average_depth_excluding_ones (float): Average depth excluding functions with depth 1.
+            - standard_deviation_excluding_ones (float): Standard deviation excluding functions with depth 1.
+        alpha (float): Weight for maximum depth. Defaults to 3 for strong emphasis on extreme nesting.
+        beta (float): Weight for mean depth excluding 1. Defaults to 2.
+        gamma (float): Weight for the standard deviation adjusted by deep proportion. Defaults to 1.
+
+    Returns:
+        float: The calculated nested score.
+    """
+    max_depth = stats.get("max_depth", 0)
+    mean_average_depth = stats.get("mean_average_depth", 1)
+    std_dev_ex_ones = stats.get("standard_deviation_excluding_ones", 0)
+    mean_depth_ex_ones = stats.get("mean_average_depth_excluding_ones", 0)
+
+    p_deep = (mean_average_depth - 1) / mean_average_depth if mean_average_depth > 1 else 0
+
+    nested_score = (
+        max_depth_weight * max_depth +
+        mean_depth_weight * mean_depth_ex_ones +
+        sd_weight * std_dev_ex_ones * p_deep
+    )
+
+    return nested_score
+
+
 def analyze_package(package_path: Path) -> dict:
     """Reviews the entire package for maximum depth calls, excluding test files.
 
@@ -161,6 +194,12 @@ def analyze_package(package_path: Path) -> dict:
         else:
             mean_average_depth_excluding_ones = 0
             standard_deviation_of_depth_excluding_ones = 0
+        nested_score = calculate_nested_score({
+            "max_depth": total_depths.get(max_result, 0) if max_result else 0,
+            "mean_average_depth": mean_average_depth,
+            "mean_average_depth_excluding_ones": mean_average_depth_excluding_ones,
+            "standard_deviation_excluding_ones": standard_deviation_of_depth_excluding_ones
+        })
 
         logger.info(f"Package analysis complete. Max depth: {total_depths[max_result]}, Max depth function: {max_result}")
     else:
@@ -170,6 +209,7 @@ def analyze_package(package_path: Path) -> dict:
         standard_deviation_of_depth = 0
         mean_average_depth_excluding_ones = 0
         standard_deviation_of_depth_excluding_ones = 0
+        nested_score = 0
 
     return {
         "count_of_functions": len(function_graph),
@@ -179,5 +219,6 @@ def analyze_package(package_path: Path) -> dict:
         "max_depth_function": max_result,
         "standard_deviation": round(standard_deviation_of_depth,3),
         "mean_average_depth_excluding_ones": round(mean_average_depth_excluding_ones, 2),
-        "standard_deviation_excluding_ones": round(standard_deviation_of_depth_excluding_ones, 3)
+        "standard_deviation_excluding_ones": round(standard_deviation_of_depth_excluding_ones, 3),
+        "nested_score": round(nested_score, 2)
     }

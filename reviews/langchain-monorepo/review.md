@@ -1,3 +1,0 @@
-# The Myspace of LLM frameworks: first and worst
-
-Langchain is how Rube Goldberg would write an LLM framework. With 500+ dependencies in the chain and a total package size of **3.5G** for what is essentially a prompting library, this package looks less like production software and more like a crazy hermit hoarding Python code in his basement. Frame depth and complexity metrics paint the picture of a confused codebase peppered with onion-wrapper abstractions and poor separation of duties. Pyflakes cannot make it through the code to do an error analysis without crashing in recursion. Langchain is exactly how not to build a production library.

@@ -15,13 +15,9 @@ class MasterDataset:
         merge parts into a single record
         """
         analysis = self.analyses / f"{record_name}.json"
-        review_data = self.reviews / record_name / "review.json"
         review_md = self.reviews / record_name / "review.md"
 
-        record = {}
-        record["analysis"] = json.loads(analysis.read_text())
-        record["review_data"] = json.loads(review_data.read_text())
-
+        record = Snarkizer(record_name).presentation
         body = []
         for line in review_md.read_text().split("\n"):
             if line.startswith("# "):
@@ -45,6 +41,22 @@ class Snarkizer:
     def __init__(self, record_name: str):
         self.record = json.loads(Path(f"/app/analyses/{record_name}.json").read_text())
         self.presentation = {}
+        self.example_score()
+        self.highlights()
+        self.stars()
+        self.pretty_dates()
+
+    def example_score(self):
+        self.presentation["example_score"] = self.record["examples"]["score"]
+
+    def highlights(self):
+        examples = self.record["examples"]["details"]
+        examples.sort(key=lambda x: x["score"], reverse=True)
+        highlights = {
+            "highs": examples[:3],
+            "lows": examples[-3:]
+        }
+        self.presentation["highlights"] = highlights
 
     def stars(self):
         stars = dict(
@@ -127,8 +139,8 @@ class Snarkizer:
     def pretty_dates(self):
         today = datetime.datetime.now()
         self.presentation["reviewed_on"] = today.strftime("%b %d, %Y")
-        newest = self.record["analysis"]["github_stats"]["newest_commit"]
-        oldest = self.record["analysis"]["github_stats"]["oldest_commit"]
+        newest = datetime.datetime.strptime(self.record["github_stats"]["newest_commit"],"%Y-%m-%d %H:%M:%S")
+        oldest = datetime.datetime.strptime(self.record["github_stats"]["oldest_commit"], "%Y-%m-%d %H:%M:%S")
 
         def human(datevalue):
             return humanize.naturaltime(today - datevalue)

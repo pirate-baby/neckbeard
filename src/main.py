@@ -21,6 +21,7 @@ from reviewer import Reviewer
 from master_dataset import MasterDataset
 from moisture_meter import check_dryness
 from security import Security
+from example_finder import find_examples
 
 logging.basicConfig(level=logging.INFO, handlers=[logging.StreamHandler(sys.stdout)])
 logger = logging.getLogger(__name__)
@@ -63,7 +64,9 @@ class CodeBase:
             "package_tree_analysis": package_tree_analysis,
             "package_complexity": get_package_complexity(self.codebase),
             "error_analysis": flake_package(self.codebase),
-            "security_risks": [f"{v} instances of {k}" for k, v in Security().get_security_risk_codes(self.filtered_codebase).items()]
+            "security_risks": [f"{v} instances of {k}" for k, v in Security().get_security_risk_codes(self.filtered_codebase).items()],
+            "examples": find_examples(self.filtered_codebase)
+
 
         }
         logger.info("Analysis complete")
@@ -229,9 +232,10 @@ class CodeBase:
 
     @property
     def filtered_codebase(self) -> Generator:
-        """remove venv files from codebase counts"""
+        """remove unwanted files from codebase counts"""
+        bad_parts = ("venv", ".git", "__pycache__", "tests", "test", ".pytest_cache")
         for p in self.codebase.rglob("*"):
-            if "venv" not in p.parts:
+            if not any(bad in p.parts for bad in bad_parts):
                 yield p
 
     @classmethod
@@ -254,20 +258,20 @@ class CodeBase:
             num /= step
 
 if __name__ == "__main__":
-    c = CodeBase()
-    try:
-        url = sys.argv[1]
-    except IndexError:
-        raise ValueError("Please provide a github url")
-    save_path = Path("analyses")
-    save_path.mkdir(exist_ok=True)
-    analysis = c.analyze(url)
-    safe_name = c.get_package_name().replace("/","_").replace(":","_").replace(".","_")
-    file_path = save_path / f"{safe_name}.json"
-    file_path.write_text(analysis)
-    print("Analysis complete. Results saved to", save_path)
+    #c = CodeBase()
+    #try:
+        #url = sys.argv[1]
+    #except IndexError:
+        #raise ValueError("Please provide a github url")
+    #save_path = Path("analyses")
+    #save_path.mkdir(exist_ok=True)
+    #analysis = c.analyze(url)
+    #safe_name = c.get_package_name().replace("/","_").replace(":","_").replace(".","_")
+    #file_path = save_path / f"{safe_name}.json"
+    #file_path.write_text(analysis)
+    #print("Analysis complete. Results saved to", save_path)
     #print("writing reviews...")
     #Reviewer().review(safe_name)
 
-    #print("re-building master dataset...")
-    #MasterDataset().generate()
+    print("re-building master dataset...")
+    MasterDataset().generate()

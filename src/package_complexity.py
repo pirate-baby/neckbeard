@@ -87,13 +87,13 @@ def analyze_package_complexity(package_path: Path) -> Dict[str, List[Tuple[str, 
     """
     complexity_summary: Dict[str, List[Tuple[str, int]]] = {}
 
-    logger.info(f"Analyzing package for cyclomatic complexity: {package_path}")
+    logger.debug(f"Analyzing package for cyclomatic complexity: {package_path}")
     for file_path in package_path.rglob("*.py"):
         if is_test_file(file_path) or is_venv_file(file_path):
-            logger.info(f"Skipping excluded file: {file_path}")
+            logger.debug(f"Skipping excluded file: {file_path}")
             continue
 
-        logger.info(f"Analyzing file: {file_path}")
+        logger.debug(f"Analyzing file: {file_path}")
         file_complexities = analyze_file_complexity(file_path)
         complexity_summary[str(file_path)] = file_complexities
 

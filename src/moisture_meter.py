@@ -72,7 +72,7 @@ def check_dryness(project_path):
         "percentage_duplicates": round((len(duplicate_hashes) / total_hashes) * 100, 2),
         "rule_of_threes": len(rule_of_threes),
         "percentage_rule_of_threes": round((len(rule_of_threes) / total_hashes) * 100, 2),
-        "dryness_score": _dryness_score(total_hashes, len(duplicate_hashes), len(rule_of_threes))
+        "dryness_score": round(100 * _dryness_score(total_hashes, len(duplicate_hashes), len(rule_of_threes)),2)
     }
 
 def _dryness_score(total_code_blocks, duplicated_code_blocks, rule_of_threes):
